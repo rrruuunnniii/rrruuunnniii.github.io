@@ -1,77 +1,130 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta http-equiv="refresh" content="5; url='https://script.google.com/macros/s/AKfycbzWqnbiZiqK-OXPbAn3w_58Xi0tCFiMW5Ap3xyMBpGMrSrHSN9FCQ4tlN4Y2cBF9yju/exec'" />
     <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: center;
-        height: 100vh;
-        background-color: #e0f7fa;
-        font-family: sans-serif;
-        overflow: hidden;
-        padding-right: 20px;
-      }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
 
-      .walker {
-        position: relative;
-        font-size: 2rem;
-        white-space: nowrap;
-        animation: walk-left 5s linear forwards;
-      }
+        .loader-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+            position: relative;
+            height: 120px;
+        }
 
-      @keyframes walk-left {
-        0% { left: 100%; }
-        100% { left: -300px; }
-      }
+        .turtle-container {
+            position: absolute;
+            left: 0;
+            animation: walk 5s linear forwards;
+            transform: translateX(-80px) scaleX(-1);
+        }
 
-      .turtle {
-        display: inline-block;
-        animation: wiggle 0.4s ease-in-out infinite;
-      }
+        @keyframes walk {
+            0% { transform: translateX(-80px) scaleX(-1); }
+            100% { transform: translateX(calc(100% + 80px)) scaleX(-1); }
+        }
 
-      @keyframes wiggle {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-      }
+        .turtle-emoji {
+            font-size: 60px;
+            display: inline-block;
+            animation: body-bounce 0.8s infinite alternate;
+        }
 
-      .trail span {
-        display: inline-block;
-        margin-left: 5px;
-        animation: sparkle 0.8s infinite;
-      }
+        @keyframes body-bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-5px); }
+            75% { transform: translateY(-3px); }
+        }
 
-      .trail span:nth-child(even) {
-        animation-delay: 0.4s;
-      }
+        .walk-path {
+            width: 100%;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
 
-      @keyframes sparkle {
-        0%, 100% { opacity: 0.3; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.2) rotate(10deg); }
-      }
+        .walk-path::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: #00796b;
+            border-radius: 3px;
+            animation: path-fill 5s linear forwards;
+        }
 
-      p {
-        margin-top: 20px;
-        font-size: 1.2rem;
-        text-align: center;
-      }
+        @keyframes path-fill {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
 
-      a {
-        color: #00695c;
-        text-decoration: none;
-      }
+        .content {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #00796b;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        p {
+            color: #424242;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        a {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #004d40;
+            text-decoration: underline;
+        }
+
+        .redirect-notice {
+            font-size: 0.9rem;
+            color: #616161;
+            margin-top: 20px;
+        }
     </style>
-  </head>
-  <body>
-    <div class="walker">
-      <span class="turtle">🐢</span>
-      <span class="trail">
-        <span>💩</span><span>✨</span><span>💩</span><span>✨</span>
-      </span>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="turtle-container">
+            <div class="turtle-emoji">🐢</div>
+        </div>
+        <div class="walk-path"></div>
     </div>
 
-    <p>Cool cool cool. No doubt no doubt no doubt!<br />Hi there! Redirecting to <a href="https://script.google.com/macros/s/AKfycbzWqnbiZiqK-OXPbAn3w_58Xi0tCFiMW5Ap3xyMBpGMrSrHSN9FCQ4tlN4Y2cBF9yju/exec">grade tracker</a>...</p>
-  </body>
+    <div class="content">
+        <h1>Grade Tracker</h1>
+        <p>You are being redirected to the Grade Tracker application. Please wait while we prepare your dashboard.</p>
+        <p>If you are not redirected automatically, <a href="https://script.google.com/macros/s/AKfycbzWqnbiZiqK-OXPbAn3w_58Xi0tCFiMW5Ap3xyMBpGMrSrHSN9FCQ4tlN4Y2cBF9yju/exec">click here</a> to proceed.</p>
+        <p class="redirect-notice">Redirecting in 5 seconds...</p>
+    </div>
+</body>
 </html>
